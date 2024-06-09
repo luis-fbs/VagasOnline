@@ -2,8 +2,6 @@ package vagasOnline.api.usuario;
 
 import vagasOnline.api.vaga.Vaga;
 
-import java.util.ArrayList;
-
 public class Pessoa extends Usuario{
     private String cpf, curriculo;
 
@@ -29,4 +27,10 @@ public class Pessoa extends Usuario{
         this.excluiVagaDaListaDeCadastradas(vaga);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) &&
+                (obj instanceof Pessoa) &&
+                this.cpf.equals( ((Pessoa) obj).cpf );
+    }
 }

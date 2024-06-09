@@ -17,4 +17,11 @@ public class Empresa extends Usuario{
     public void excluirVaga(Vaga vaga){
         this.excluiVagaDaListaDeCadastradas(vaga);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) &&
+                (obj instanceof Empresa) &&
+                this.cnpj.equals( ((Empresa) obj).cnpj );
+    }
 }

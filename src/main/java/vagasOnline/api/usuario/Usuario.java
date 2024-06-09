@@ -43,4 +43,9 @@ public abstract class Usuario {
     public void excluiVagaDaListaDeCadastradas(Vaga vaga){
         this.vagasCadastradas.remove(vaga);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Usuario) && this.senha.equals( ((Usuario) obj).senha );
+    }
 }
