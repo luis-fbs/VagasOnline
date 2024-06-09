@@ -2,12 +2,13 @@ package vagasOnline.api.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import vagasOnline.api.service.GerenciadorDeCadastro;
-import vagasOnline.api.usuario.Pessoa;
+import vagasOnline.api.util.Conversor;
 
 @RestController
-//@RequestMapping("cadastro")
 public class CadastroController {
     GerenciadorDeCadastro gerenciadorDeCadastro;
 
@@ -17,7 +18,7 @@ public class CadastroController {
     }
 
     @PostMapping("cadastro")
-    public void cadastrar(@RequestBody String info){
+    public void cadastrar(@RequestBody String json){
+        gerenciadorDeCadastro.cadastrarUsuario(Conversor.jsonParaUsuario(json));
     }
-
 }
