@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import vagasOnline.api.usuario.Empresa;
 import vagasOnline.api.usuario.Pessoa;
 import vagasOnline.api.usuario.Usuario;
+import vagasOnline.api.util.Conversor;
 import vagasOnline.api.vaga.Vaga;
 
 import java.util.ArrayList;
@@ -21,7 +22,11 @@ public class GerenciadorDeCadastro {
         this.vagasCadastradas = new ArrayList<Vaga>();
     }
 
-    public void cadastrarUsuario(Usuario usuario){
+    public void cadastrarUsuario(String json){
+        this.cadastrarUsuario(Conversor.jsonParaUsuario(json));
+    }
+
+    private void cadastrarUsuario(Usuario usuario){
         if (usuario instanceof Empresa){
             this.empresasCadastradas.add((Empresa) usuario);
         } else if (usuario instanceof Pessoa) {
