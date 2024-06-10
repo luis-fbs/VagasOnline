@@ -19,6 +19,7 @@ public class CadastroController {
 
     @PostMapping("cadastro")
     public void cadastrar(@RequestBody String json){
+        System.out.println(json);
         gerenciadorDeCadastro.cadastrarUsuario(Conversor.jsonParaUsuario(json));
     }
 }
