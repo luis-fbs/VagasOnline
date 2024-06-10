@@ -54,6 +54,9 @@ class ConversorTest {
                 }
                 """;
 
+        String jsonSintaxeErrada = """
+                "nome" : "Luis Felipe", senha "teste" @%#%""";
+
         Usuario pessoa = new Pessoa("s/f", "Luis Felipe", "teste",
                 "123.456.789-10", "meu curriculo");
 
@@ -64,5 +67,6 @@ class ConversorTest {
         assertEquals(null, Conversor.jsonParaUsuario(jsonErrado));
         assertEquals(null, Conversor.jsonParaUsuario(jsonErrado2));
         assertEquals(null, Conversor.jsonParaUsuario(jsonErrado3));
+        assertEquals(null, Conversor.jsonParaUsuario(jsonSintaxeErrada));
     }
 }
