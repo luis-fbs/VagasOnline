@@ -34,6 +34,10 @@ public class GerenciadorDeCadastro {
         }
     }
 
+    public void excluirUsuario(String json){
+        this.excluirUsuario(Conversor.jsonParaUsuario(json));
+    }
+
     public void excluirUsuario(Usuario usuario){
         if (usuario instanceof Empresa){
             this.empresasCadastradas.remove((Empresa) usuario);
