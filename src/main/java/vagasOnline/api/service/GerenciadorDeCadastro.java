@@ -61,4 +61,17 @@ public class GerenciadorDeCadastro {
             return this.pessoasCadastradas.contains(usuario);
         } else return false;
     }
+
+    public Usuario getUsuario(Usuario usuario){
+        if (usuario instanceof Empresa){
+            for (Empresa empresa : empresasCadastradas){
+                if (empresa.equals(usuario)) return empresa;
+            }
+        } else if (usuario instanceof Pessoa) {
+            for (Pessoa pessoa : pessoasCadastradas){
+                if(pessoa.equals(usuario)) return pessoa;
+            }
+        }
+        return null;
+    }
 }
