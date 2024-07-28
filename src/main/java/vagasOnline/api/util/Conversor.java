@@ -3,6 +3,7 @@ package vagasOnline.api.util;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+import vagasOnline.api.dto.AutenticacaoDTO;
 import vagasOnline.api.usuario.Empresa;
 import vagasOnline.api.usuario.Pessoa;
 import vagasOnline.api.usuario.Usuario;
@@ -19,7 +20,6 @@ public class Conversor {
                 return gson.fromJson(json, Empresa.class);
             } else return null;
         } catch (JsonSyntaxException exception){
-            System.out.println("Sintaxe invalida\nErro: " + exception);
             return null;
         }
     }
@@ -30,5 +30,23 @@ public class Conversor {
                               .create();
 
         return gson.toJson(usuario);
+    }
+
+    public static AutenticacaoDTO jsonParaAutenticacaoDTO(String json){
+        Gson gson = new Gson();
+
+        try {
+            JsonObject parser = gson.fromJson(json, JsonObject.class);
+            if (parser.has("senha")) {
+                if (parser.has("cpf")) {
+                    return new AutenticacaoDTO(parser.get("cpf").getAsString(), parser.get("senha").getAsString());
+                } else if (parser.has("cnpj")) {
+                    return new AutenticacaoDTO(parser.get("cnpj").getAsString(), parser.get("senha").getAsString());
+                }
+            }
+            return null;
+        } catch (JsonSyntaxException exception){
+            return null;
+        }
     }
 }
