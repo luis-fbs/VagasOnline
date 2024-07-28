@@ -39,12 +39,12 @@ public class GerenciadorDeCadastro {
 
     public String informacoesPessoa(String cpf){
         Pessoa pessoa = Conversor.usuarioComCpf(cpf);
-        return Conversor.usuarioParaJson(pessoa);
+        return Conversor.usuarioParaJson(getUsuario(pessoa));
     }
 
     public String informacoesEmpresa(String cnpj){
         Empresa empresa = Conversor.usuarioComCnpj(cnpj);
-        return Conversor.usuarioParaJson(empresa);
+        return Conversor.usuarioParaJson(getUsuario(empresa));
     }
 
     public void excluirUsuario(String json){
