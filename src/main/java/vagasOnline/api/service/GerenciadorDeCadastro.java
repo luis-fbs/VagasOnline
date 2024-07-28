@@ -23,7 +23,10 @@ public class GerenciadorDeCadastro {
     }
 
     public void cadastrarUsuario(String json){
-        this.cadastrarUsuario(Conversor.jsonParaUsuario(json));
+        Usuario usuario = Conversor.jsonParaUsuario(json);
+        if (!usuarioExiste(usuario)){
+            this.cadastrarUsuario(usuario);
+        }
     }
 
     private void cadastrarUsuario(Usuario usuario){
