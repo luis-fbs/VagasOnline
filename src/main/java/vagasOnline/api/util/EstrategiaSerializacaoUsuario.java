@@ -6,7 +6,9 @@ import com.google.gson.FieldAttributes;
 public class EstrategiaSerializacaoUsuario implements ExclusionStrategy {
     @Override
     public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-        return "senha".equals(fieldAttributes.getName());
+        return "senha".equals(fieldAttributes.getName()) ||
+                "cpf".equals(fieldAttributes.getName()) ||
+                "cnpj".equals(fieldAttributes.getName());
     }
 
     @Override
