@@ -23,4 +23,11 @@ public class Empresa extends Usuario{
         return (obj instanceof Empresa) &&
                 this.cnpj.equals( ((Empresa) obj).cnpj );
     }
+
+    @Override
+    public boolean autenticacaoCorreta(String identificador, String senha) {
+        return identificador != null &&
+                super.autenticacaoCorreta(null, senha) &&
+                identificador.equals(cnpj);
+    }
 }

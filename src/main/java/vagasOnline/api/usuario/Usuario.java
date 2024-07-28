@@ -43,6 +43,10 @@ public abstract class Usuario {
     public void excluiVagaDaListaDeCadastradas(Vaga vaga){
         this.vagasCadastradas.remove(vaga);
     }
+    
+    public boolean autenticacaoCorreta(String identificador, String senha){
+        return senha != null && senha.equals(this.senha);
+    }
 
     @Override
     public boolean equals(Object obj) {

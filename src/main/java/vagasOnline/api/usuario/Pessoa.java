@@ -32,4 +32,11 @@ public class Pessoa extends Usuario{
         return (obj instanceof Pessoa) &&
                 this.cpf.equals( ((Pessoa) obj).cpf );
     }
+
+    @Override
+    public boolean autenticacaoCorreta(String identificador, String senha) {
+        return identificador != null &&
+                super.autenticacaoCorreta(null, senha) &&
+                identificador.equals(cpf);
+    }
 }
