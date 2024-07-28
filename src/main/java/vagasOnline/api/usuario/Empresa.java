@@ -20,8 +20,7 @@ public class Empresa extends Usuario{
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj) &&
-                (obj instanceof Empresa) &&
+        return (obj instanceof Empresa) &&
                 this.cnpj.equals( ((Empresa) obj).cnpj );
     }
 }

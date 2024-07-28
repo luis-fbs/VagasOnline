@@ -29,8 +29,7 @@ public class Pessoa extends Usuario{
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj) &&
-                (obj instanceof Pessoa) &&
+        return (obj instanceof Pessoa) &&
                 this.cpf.equals( ((Pessoa) obj).cpf );
     }
 }
