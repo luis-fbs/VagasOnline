@@ -21,13 +21,13 @@ public class CadastroController {
         gerenciadorDeCadastro.cadastrarUsuario(json);
     }
 
-    @GetMapping("usuario/pessoa/{cpf}")
-    public String informacoesPessoa(@PathVariable String cpf){
-        return gerenciadorDeCadastro.informacoesPessoa(cpf);
+    @GetMapping("usuario/pessoa/{index}")
+    public String informacoesPessoa(@PathVariable int index){
+        return gerenciadorDeCadastro.informacoesPessoa(index);
     }
 
-    @GetMapping("usuario/empresa/{cnpj}")
-    public String informacoesEmpresa(@PathVariable String cnpj){
-        return gerenciadorDeCadastro.informacoesPessoa(cnpj);
+    @GetMapping("usuario/empresa/{index}")
+    public String informacoesEmpresa(@PathVariable int index){
+        return gerenciadorDeCadastro.informacoesEmpresa(index);
     }
 }
