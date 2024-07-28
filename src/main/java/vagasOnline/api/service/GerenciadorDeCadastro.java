@@ -37,14 +37,14 @@ public class GerenciadorDeCadastro {
         }
     }
 
-    public Pessoa informacoesPessoa(String cpf){
+    public String informacoesPessoa(String cpf){
         Pessoa pessoa = Conversor.usuarioComCpf(cpf);
-        return (Pessoa) getUsuario(pessoa);
+        return Conversor.usuarioParaJson(pessoa);
     }
 
-    public Empresa informacoesEmpresa(String cnpj){
+    public String informacoesEmpresa(String cnpj){
         Empresa empresa = Conversor.usuarioComCnpj(cnpj);
-        return (Empresa) getUsuario(empresa);
+        return Conversor.usuarioParaJson(empresa);
     }
 
     public void excluirUsuario(String json){
