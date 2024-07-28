@@ -22,6 +22,18 @@ public class GerenciadorDeCadastro {
         this.vagasCadastradas = new ArrayList<Vaga>();
     }
 
+    public List<Empresa> getEmpresasCadastradas() {
+        return empresasCadastradas;
+    }
+
+    public List<Pessoa> getPessoasCadastradas() {
+        return pessoasCadastradas;
+    }
+
+    public List<Vaga> getVagasCadastradas() {
+        return vagasCadastradas;
+    }
+
     public void cadastrarUsuario(String json){
         Usuario usuario = Conversor.jsonParaUsuario(json);
         if (!usuarioExiste(usuario)){
