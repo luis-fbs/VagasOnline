@@ -23,4 +23,12 @@ public class Conversor {
             return null;
         }
     }
+
+    public static String usuarioParaJson(Usuario usuario){
+        Gson gson = new Gson().newBuilder()
+                              .addSerializationExclusionStrategy(new EstrategiaSerializacaoUsuario())
+                              .create();
+
+        return gson.toJson(usuario);
+    }
 }
