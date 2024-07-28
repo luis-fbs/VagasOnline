@@ -31,4 +31,12 @@ public class Conversor {
 
         return gson.toJson(usuario);
     }
+
+    public static Pessoa usuarioComCpf(String cpf){
+        return new Pessoa(null,null,null, cpf,null);
+    }
+
+    public static Empresa usuarioComCnpj(String cnpj) {
+        return new Empresa(null, null,null, cnpj);
+    }
 }
