@@ -37,6 +37,16 @@ public class GerenciadorDeCadastro {
         }
     }
 
+    public Pessoa informacoesPessoa(String cpf){
+        Pessoa pessoa = Conversor.usuarioComCpf(cpf);
+        return (Pessoa) getUsuario(pessoa);
+    }
+
+    public Empresa informacoesEmpresa(String cnpj){
+        Empresa empresa = Conversor.usuarioComCnpj(cnpj);
+        return (Empresa) getUsuario(empresa);
+    }
+
     public void excluirUsuario(String json){
         this.excluirUsuario(Conversor.jsonParaUsuario(json));
     }
