@@ -37,14 +37,20 @@ public class GerenciadorDeCadastro {
         }
     }
 
-    public String informacoesPessoa(String cpf){
-        Pessoa pessoa = Conversor.usuarioComCpf(cpf);
-        return Conversor.usuarioParaJson(getUsuario(pessoa));
+    public String informacoesPessoa(int index){
+        try {
+            return Conversor.usuarioParaJson(pessoasCadastradas.get(index));
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public String informacoesEmpresa(String cnpj){
-        Empresa empresa = Conversor.usuarioComCnpj(cnpj);
-        return Conversor.usuarioParaJson(getUsuario(empresa));
+    public String informacoesEmpresa(int index){
+        try {
+            return Conversor.usuarioParaJson(empresasCadastradas.get(index));
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void excluirUsuario(String json){
@@ -73,18 +79,5 @@ public class GerenciadorDeCadastro {
         } else if (usuario instanceof Pessoa) {
             return this.pessoasCadastradas.contains(usuario);
         } else return false;
-    }
-
-    public Usuario getUsuario(Usuario usuario){
-        if (usuario instanceof Empresa){
-            for (Empresa empresa : empresasCadastradas){
-                if (empresa.equals(usuario)) return empresa;
-            }
-        } else if (usuario instanceof Pessoa) {
-            for (Pessoa pessoa : pessoasCadastradas){
-                if(pessoa.equals(usuario)) return pessoa;
-            }
-        }
-        return null;
     }
 }
