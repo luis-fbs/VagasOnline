@@ -17,8 +17,8 @@ public class Autenticacao {
     }
 
     public String autenticarPessoa(String json){
+        AutenticacaoDTO autenticacaoDTO = Conversor.jsonParaAutenticacaoDTO(json);
         for (Pessoa pessoa: gerenciadorDeCadastro.getPessoasCadastradas()){
-            AutenticacaoDTO autenticacaoDTO = Conversor.jsonParaAutenticacaoDTO(json);
             if (autenticacaoDTO != null) {
                 if (pessoa.autenticacaoCorreta(autenticacaoDTO.identificacao(), autenticacaoDTO.senha())) {
                     return Conversor.usuarioParaJson(pessoa);
@@ -29,8 +29,8 @@ public class Autenticacao {
     }
 
     public String autenticarEmpresa(String json) {
+        AutenticacaoDTO autenticacaoDTO = Conversor.jsonParaAutenticacaoDTO(json);
         for (Empresa empresa: gerenciadorDeCadastro.getEmpresasCadastradas()){
-            AutenticacaoDTO autenticacaoDTO = Conversor.jsonParaAutenticacaoDTO(json);
             if (autenticacaoDTO != null) {
                 if (empresa.autenticacaoCorreta(autenticacaoDTO.identificacao(), autenticacaoDTO.senha())) {
                     return Conversor.usuarioParaJson(empresa);
