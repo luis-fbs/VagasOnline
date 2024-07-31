@@ -2,6 +2,9 @@ package vagasOnline.api.util;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import vagasOnline.api.dto.AutenticacaoDTO;
+import vagasOnline.api.service.GerenciadorDeCadastro;
 import vagasOnline.api.usuario.Empresa;
 import vagasOnline.api.usuario.Pessoa;
 import vagasOnline.api.usuario.Usuario;
@@ -68,5 +71,57 @@ class ConversorTest {
         assertEquals(null, Conversor.jsonParaUsuario(jsonErrado2));
         assertEquals(null, Conversor.jsonParaUsuario(jsonErrado3));
         assertEquals(null, Conversor.jsonParaUsuario(jsonSintaxeErrada));
+    }
+
+    @Test
+    void jsonParaAutenticacaoDTO() {
+        String jsonPessoa = """
+                {"foto": "foto","nome": "Nome teste","senha": "teste 123",
+                "cpf": "123.456.789-10","curriculo": "curriculo teste"}
+                """;
+
+        String jsonEmpresa = """
+                {
+                "foto": "foto",
+                "nome": "Empresa teste",
+                "senha": "teste 123",
+                "cnpj": "123.456/0007-89"
+                }
+                """;
+
+        String jsonIdentificacaoSenha1 = """
+                {
+                "cpf": "123",
+                "senha": "teste"
+                }
+                """;
+
+        String jsonIdentificacaoSenha2 = """
+                {
+                "senha": "teste",
+                "cnpj": "1234"
+                }
+                """;
+
+        String jsonErrado = """
+                {
+                "teste": "1234",
+                "senha": "teste"
+                }
+                """;
+
+        AutenticacaoDTO pessoa = Conversor.jsonParaAutenticacaoDTO(jsonPessoa);
+        AutenticacaoDTO empresa = Conversor.jsonParaAutenticacaoDTO(jsonEmpresa);
+        AutenticacaoDTO idSenha1 = Conversor.jsonParaAutenticacaoDTO(jsonIdentificacaoSenha1);
+        AutenticacaoDTO idSenha2 = Conversor.jsonParaAutenticacaoDTO(jsonIdentificacaoSenha2);
+
+//        System.out.println(idSenha1.identificacao()+"\n"+idSenha1.senha());
+//        System.out.println(idSenha2.identificacao()+"\n"+idSenha2.senha());
+
+        assertEquals(true, pessoa.identificacao().equals("123.456.789-10") && pessoa.senha().equals("teste 123"));
+        assertEquals(true, empresa.identificacao().equals("123.456/0007-89") && pessoa.senha().equals("teste 123"));
+//        assertEquals(true, idSenha1.identificacao().equals("123") && pessoa.senha().equals("teste"));
+//        assertEquals(true, idSenha2.identificacao().equals("1234") && pessoa.senha().equals("teste"));
+        assertEquals(null, Conversor.jsonParaAutenticacaoDTO(jsonErrado));
     }
 }
