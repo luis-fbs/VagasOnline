@@ -3,6 +3,7 @@ package vagasOnline.api.vaga;
 import vagasOnline.api.usuario.Empresa;
 import vagasOnline.api.usuario.Pessoa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vaga {
@@ -14,6 +15,7 @@ public class Vaga {
         this.cargo = cargo;
         this.descricao = descricao;
         this.empresa = empresa;
+        this.candidatos = new ArrayList<Pessoa>();
     }
 
     public void adicionarCandidato(Pessoa candidato){
@@ -22,5 +24,13 @@ public class Vaga {
 
     public void excluirCandidato(Pessoa candidato){
         this.candidatos.remove(candidato);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Vaga) &&
+                ((Vaga) obj).cargo.equals(this.cargo) &&
+                ((Vaga) obj).empresa.equals(this.empresa) &&
+                ((Vaga) obj).descricao.equals(this.descricao);
     }
 }
