@@ -77,7 +77,7 @@ public class GerenciadorDeCadastro {
         }
     }
 
-    public void cadastrarVaga(Vaga vaga){
+    private void cadastrarVaga(Vaga vaga){
         this.vagasCadastradas.add(vaga);
     }
 
@@ -91,5 +91,9 @@ public class GerenciadorDeCadastro {
         } else if (usuario instanceof Pessoa) {
             return this.pessoasCadastradas.contains(usuario);
         } else return false;
+    }
+
+    public boolean vagaExiste(Vaga vaga){
+        return this.vagasCadastradas.contains(vaga);
     }
 }
