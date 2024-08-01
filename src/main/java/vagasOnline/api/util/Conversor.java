@@ -7,6 +7,7 @@ import vagasOnline.api.dto.AutenticacaoDTO;
 import vagasOnline.api.usuario.Empresa;
 import vagasOnline.api.usuario.Pessoa;
 import vagasOnline.api.usuario.Usuario;
+import vagasOnline.api.vaga.Vaga;
 
 public class Conversor {
     public static Usuario jsonParaUsuario(String json){
@@ -46,6 +47,16 @@ public class Conversor {
             }
             return null;
         } catch (JsonSyntaxException exception){
+            return null;
+        }
+    }
+
+    public Vaga jsonParaVaga(String json){
+        Gson gson = new Gson();
+
+        try{
+            return gson.fromJson(json, Vaga.class);
+        } catch (JsonSyntaxException e) {
             return null;
         }
     }
