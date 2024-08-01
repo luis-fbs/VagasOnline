@@ -115,13 +115,10 @@ class ConversorTest {
         AutenticacaoDTO idSenha1 = Conversor.jsonParaAutenticacaoDTO(jsonIdentificacaoSenha1);
         AutenticacaoDTO idSenha2 = Conversor.jsonParaAutenticacaoDTO(jsonIdentificacaoSenha2);
 
-//        System.out.println(idSenha1.identificacao()+"\n"+idSenha1.senha());
-//        System.out.println(idSenha2.identificacao()+"\n"+idSenha2.senha());
-
         assertEquals(true, pessoa.identificacao().equals("123.456.789-10") && pessoa.senha().equals("teste 123"));
         assertEquals(true, empresa.identificacao().equals("123.456/0007-89") && pessoa.senha().equals("teste 123"));
-//        assertEquals(true, idSenha1.identificacao().equals("123") && pessoa.senha().equals("teste"));
-//        assertEquals(true, idSenha2.identificacao().equals("1234") && pessoa.senha().equals("teste"));
+        assertEquals(true, idSenha1.identificacao().equals("123") && idSenha1.senha().equals("teste"));
+        assertEquals(true, idSenha2.identificacao().equals("1234") && idSenha2.senha().equals("teste"));
         assertEquals(null, Conversor.jsonParaAutenticacaoDTO(jsonErrado));
     }
 }
