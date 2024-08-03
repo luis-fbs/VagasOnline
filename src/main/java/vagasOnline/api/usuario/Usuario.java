@@ -36,6 +36,12 @@ public abstract class Usuario {
         this.senha = senha;
     }
 
+    public void inicializaListaVagasCadastradas(){
+        if(vagasCadastradas == null) {
+            vagasCadastradas = new ArrayList<Vaga>();
+        }
+    }
+
     public void adiconarVagaNaListaDeCadastradas(Vaga vaga){
         this.vagasCadastradas.add(vaga);
     }
