@@ -51,7 +51,7 @@ public class Conversor {
         }
     }
 
-    public Vaga jsonParaVaga(String json){
+    public static Vaga jsonParaVaga(String json){
         Gson gson = new Gson();
 
         try{
