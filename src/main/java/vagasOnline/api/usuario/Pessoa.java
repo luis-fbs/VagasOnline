@@ -29,8 +29,11 @@ public class Pessoa extends Usuario{
 
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof Pessoa) &&
-                this.cpf.equals( ((Pessoa) obj).cpf );
+        if (obj != null) {
+            return (obj instanceof Pessoa) &&
+                    this.cpf.equals(((Pessoa) obj).cpf);
+        }
+        return false;
     }
 
     @Override

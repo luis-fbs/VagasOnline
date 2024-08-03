@@ -50,6 +50,9 @@ public abstract class Usuario {
 
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof Usuario) && this.senha.equals( ((Usuario) obj).senha );
+        if (obj != null) {
+            return (obj instanceof Usuario) && this.senha.equals(((Usuario) obj).senha);
+        }
+        return false;
     }
 }
