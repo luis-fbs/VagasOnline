@@ -16,9 +16,13 @@ public class Conversor {
         try {
             JsonObject parser = gson.fromJson(json, JsonObject.class);
             if (parser.has("cpf")){
-                return gson.fromJson(json, Pessoa.class);
+                Pessoa pessoa = gson.fromJson(json, Pessoa.class);
+                pessoa.inicializaListaVagasCadastradas();
+                return pessoa;
             } else if (parser.has("cnpj")) {
-                return gson.fromJson(json, Empresa.class);
+                Empresa empresa = gson.fromJson(json, Empresa.class);
+                empresa.inicializaListaVagasCadastradas();
+                return empresa;
             } else return null;
         } catch (JsonSyntaxException exception){
             return null;
@@ -57,6 +61,7 @@ public class Conversor {
         try{
             Vaga vaga = gson.fromJson(json, Vaga.class);
             if (!(vaga.getEmpresa() == null)) {
+                vaga.inicializaListaCandidatos();
                 return vaga;
             }
             return null;
