@@ -22,6 +22,12 @@ public class Vaga {
         return empresa;
     }
 
+    public void inicializaListaCandidatos(){
+        if (candidatos == null){
+            candidatos = new ArrayList<Pessoa>();
+        }
+    }
+    
     public void adicionarCandidato(Pessoa candidato){
         this.candidatos.add(candidato);
     }
