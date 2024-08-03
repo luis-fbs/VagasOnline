@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import vagasOnline.api.service.GerenciadorDeCadastro;
 import vagasOnline.api.usuario.Pessoa;
 import vagasOnline.api.util.Conversor;
+import vagasOnline.api.vaga.Vaga;
+
+import java.util.List;
 
 @RestController
 public class CadastroController {
@@ -29,5 +32,10 @@ public class CadastroController {
     @GetMapping("usuario/empresa/{index}")
     public String informacoesEmpresa(@PathVariable int index){
         return gerenciadorDeCadastro.informacoesEmpresa(index);
+    }
+
+    @PostMapping("vaga/cadastrar")
+    public Vaga cadastrarVaga(@RequestBody String json){
+        return gerenciadorDeCadastro.cadastrarVaga(json);
     }
 }
