@@ -55,8 +55,12 @@ public class Conversor {
         Gson gson = new Gson();
 
         try{
-            return gson.fromJson(json, Vaga.class);
-        } catch (JsonSyntaxException e) {
+            Vaga vaga = gson.fromJson(json, Vaga.class);
+            if (!(vaga.getEmpresa() == null)) {
+                return vaga;
+            }
+            return null;
+        } catch (JsonSyntaxException exception) {
             return null;
         }
     }
