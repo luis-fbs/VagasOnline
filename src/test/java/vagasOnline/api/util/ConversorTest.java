@@ -8,6 +8,7 @@ import vagasOnline.api.service.GerenciadorDeCadastro;
 import vagasOnline.api.usuario.Empresa;
 import vagasOnline.api.usuario.Pessoa;
 import vagasOnline.api.usuario.Usuario;
+import vagasOnline.api.vaga.Vaga;
 
 class ConversorTest {
     @Test
@@ -120,5 +121,53 @@ class ConversorTest {
         assertEquals(true, idSenha1.identificacao().equals("123") && idSenha1.senha().equals("teste"));
         assertEquals(true, idSenha2.identificacao().equals("1234") && idSenha2.senha().equals("teste"));
         assertEquals(null, Conversor.jsonParaAutenticacaoDTO(jsonErrado));
+    }
+
+    @Test
+    void jsonParaVaga() {
+        Empresa empresa = new Empresa("Foto", "Empresa teste", "123", "123");
+        Empresa empresa1 = new Empresa("foto", "Empresa segura", "anbiorunb234yq9gh97gh", "43211234");
+
+        Vaga vaga = new Vaga("Gerente de projetos", "Fazer a gestao dos projetos da empresa", empresa);
+        Vaga vaga1 = new Vaga("Consultor de seguranca", "Garantir que o sistema esteja seguro", empresa1);
+
+        String jsonVaga = """
+                {
+                "empresa":{
+                            "cnpj": "123"
+                          },
+                "cargo": "Gerente de projetos",
+                "descricao": "Fazer a gestao dos projetos da empresa"
+                }
+                """;
+
+        String jsonVaga1 = """
+                {
+                "descricao": "Garantir que o sistema esteja seguro",
+                "cargo": "Consultor de seguranca",
+                "empresa": {"cnpj": "43211234"}
+                }
+                """;
+
+        String jsonVagaErrado = """
+                {
+                "cnpj": "123",
+                "cargo": "Gerente de projetos",
+                "descricao": "Fazer a gestao dos projetos da empresa"
+                }
+                """;
+
+        String jsonVagaErrado1 = """
+                {
+                "descricao": "Garantir que o sistema esteja seguro",
+                "cargo": "Consultor de seguranca",
+                {"empresa": "cnpj": "43211234"}
+                }
+                """;
+
+        assertEquals(true, vaga.equals(Conversor.jsonParaVaga(jsonVaga)));
+        assertEquals(true, vaga1.equals(Conversor.jsonParaVaga(jsonVaga1)));
+        assertEquals(null, Conversor.jsonParaVaga(jsonVagaErrado));
+        assertEquals(null, Conversor.jsonParaVaga(jsonVagaErrado1));
     }
 }
