@@ -18,6 +18,10 @@ public class Vaga {
         this.candidatos = new ArrayList<Pessoa>();
     }
 
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
     public void adicionarCandidato(Pessoa candidato){
         this.candidatos.add(candidato);
     }
