@@ -69,4 +69,14 @@ public class Conversor {
             return null;
         }
     }
+
+    public static String vagaParaJson(Vaga vaga){
+        Gson gson = new Gson().newBuilder()
+                .addSerializationExclusionStrategy(new EstrategiaSerializacaoUsuario())
+                .create();
+        JsonObject parser = gson.fromJson(gson.toJson(vaga), JsonObject.class);
+        parser.addProperty("empresa", vaga.getEmpresa().getNome());
+
+        return parser.toString();
+    }
 }
