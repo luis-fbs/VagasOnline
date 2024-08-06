@@ -22,6 +22,10 @@ public class Vaga {
         return empresa;
     }
 
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
     public void inicializaListaCandidatos(){
         if (candidatos == null){
             candidatos = new ArrayList<Pessoa>();
