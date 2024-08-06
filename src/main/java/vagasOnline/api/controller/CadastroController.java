@@ -39,8 +39,8 @@ public class CadastroController {
         return gerenciadorDeCadastro.cadastrarVaga(json);
     }
 
-    @GetMapping("vaga")
-    public List<Vaga> vagasDisponiveis(){
-        return gerenciadorDeCadastro.getVagasCadastradas();
+    @GetMapping("vagas")
+    public String vagasDisponiveis(){
+        return gerenciadorDeCadastro.vagasDisponiveis();
     }
 }
