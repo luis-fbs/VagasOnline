@@ -99,6 +99,10 @@ public class GerenciadorDeCadastro {
         this.vagasCadastradas.add(vaga);
     }
 
+    public String vagasDisponiveis(){
+        return Conversor.vagaListParaJson(vagasCadastradas);
+    }
+
     public void excluirVaga(Vaga vaga){
         this.vagasCadastradas.remove(vaga);
     }
