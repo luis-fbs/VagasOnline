@@ -72,7 +72,7 @@ public class Conversor {
 
     public static String vagaParaJson(Vaga vaga){
         Gson gson = new Gson().newBuilder()
-                .addSerializationExclusionStrategy(new EstrategiaSerializacaoUsuario())
+                .addSerializationExclusionStrategy(new EstrategiaSerializacaoVaga())
                 .create();
         JsonObject parser = gson.fromJson(gson.toJson(vaga), JsonObject.class);
         parser.addProperty("empresa", vaga.getEmpresa().getNome());
