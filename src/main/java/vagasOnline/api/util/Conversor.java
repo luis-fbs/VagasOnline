@@ -9,6 +9,8 @@ import vagasOnline.api.usuario.Pessoa;
 import vagasOnline.api.usuario.Usuario;
 import vagasOnline.api.vaga.Vaga;
 
+import java.util.List;
+
 public class Conversor {
     public static Usuario jsonParaUsuario(String json){
         Gson gson = new Gson();
@@ -78,5 +80,18 @@ public class Conversor {
         parser.addProperty("empresa", vaga.getEmpresa().getNome());
 
         return parser.toString();
+    }
+
+    public static String vagaListParaJson(List<Vaga> vagas){
+        if (vagas != null){
+            StringBuilder json = new StringBuilder("[");
+            for (Vaga vaga : vagas){
+                json.append(vagaParaJson(vaga)).append(',');
+            }
+            json.deleteCharAt(json.length()-1);
+            json.append("]");
+            return json.toString();
+        }
+        return null;
     }
 }
