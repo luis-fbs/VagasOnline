@@ -35,7 +35,7 @@ public class CadastroController {
     }
 
     @PostMapping("vaga/cadastrar")
-    public Vaga cadastrarVaga(@RequestBody String json){
+    public String cadastrarVaga(@RequestBody String json){
         return gerenciadorDeCadastro.cadastrarVaga(json);
     }
 
