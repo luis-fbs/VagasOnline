@@ -6,7 +6,8 @@ import com.google.gson.FieldAttributes;
 public class EstrategiaSerializacaoVaga implements ExclusionStrategy {
     @Override
     public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-        return "empresa".equals(fieldAttributes.getName());
+        return "empresa".equals(fieldAttributes.getName()) ||
+                "candidatos".equals(fieldAttributes.getName());
     }
 
     @Override
