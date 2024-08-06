@@ -8,7 +8,8 @@ public class EstrategiaSerializacaoUsuario implements ExclusionStrategy {
     public boolean shouldSkipField(FieldAttributes fieldAttributes) {
         return "senha".equals(fieldAttributes.getName()) ||
                 "cpf".equals(fieldAttributes.getName()) ||
-                "cnpj".equals(fieldAttributes.getName());
+                "cnpj".equals(fieldAttributes.getName()) ||
+                "vagasCadastradas".equals(fieldAttributes.getName());
     }
 
     @Override
