@@ -77,16 +77,17 @@ public class GerenciadorDeCadastro {
         }
     }
 
-    public Vaga cadastrarVaga(String json){
+    public String cadastrarVaga(String json){
         Vaga vaga = Conversor.jsonParaVaga(json);
         if (!vagaExiste(vaga) && vaga != null){
             Empresa empresa = vaga.getEmpresa();
             if (usuarioExiste(empresa)){
                 for (Empresa empresaCadastrada : empresasCadastradas){
                     if (empresaCadastrada.equals(empresa)){
+                        vaga.setEmpresa(empresaCadastrada);
                         empresaCadastrada.cadastrarVaga(vaga);
                         cadastrarVaga(vaga);
-                        return vaga;
+                        return Conversor.vagaParaJson(vaga);
                     }
                 }
             }
