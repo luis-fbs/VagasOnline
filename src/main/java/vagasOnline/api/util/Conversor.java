@@ -85,7 +85,7 @@ public class Conversor {
     }
 
     public static String vagaListParaJson(List<Vaga> vagas){
-        if (vagas != null){
+        try{
             StringBuilder json = new StringBuilder("[");
             for (Vaga vaga : vagas){
                 json.append(vagaParaJson(vaga)).append(',');
@@ -93,7 +93,8 @@ public class Conversor {
             if (json.length() > 1) json.deleteCharAt(json.length()-1);
             json.append("]");
             return json.toString();
+        } catch (Exception e) {
+            return "[]";
         }
-        return null;
     }
 }
