@@ -1,8 +1,6 @@
 package vagasOnline.api.util;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
 import vagasOnline.api.dto.AutenticacaoDTO;
 import vagasOnline.api.usuario.Empresa;
 import vagasOnline.api.usuario.Pessoa;
@@ -35,8 +33,12 @@ public class Conversor {
         Gson gson = new Gson().newBuilder()
                               .addSerializationExclusionStrategy(new EstrategiaSerializacaoUsuario())
                               .create();
+        JsonObject parser = gson.fromJson(gson.toJson(usuario), JsonObject.class);
+        JsonArray jsonArray = JsonParser.parseString(Conversor.vagaListParaJson(usuario.getVagasCadastradas()))
+                                        .getAsJsonArray();
 
-        return gson.toJson(usuario);
+        parser.add("vagasCadastradas", jsonArray);
+        return parser.toString();
     }
 
     public static AutenticacaoDTO jsonParaAutenticacaoDTO(String json){
@@ -88,7 +90,7 @@ public class Conversor {
             for (Vaga vaga : vagas){
                 json.append(vagaParaJson(vaga)).append(',');
             }
-            json.deleteCharAt(json.length()-1);
+            if (json.length() > 1) json.deleteCharAt(json.length()-1);
             json.append("]");
             return json.toString();
         }
